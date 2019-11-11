@@ -1,5 +1,9 @@
+build/
 venv/
 .vscode/
+
+__pycache__
+*.pyc
 
 # output
 blueprint.svg
