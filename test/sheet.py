@@ -21,5 +21,5 @@ class Sheet:
 
     @property
     def basepath(self):
-        return os.path.join(os.path.dirname(self.filename), os.path.basename(self.filename))
+        return os.path.splitext(self.filename)[0]
 

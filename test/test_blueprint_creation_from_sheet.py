@@ -17,6 +17,8 @@ def test_creates_card_from_cell(sheetfile):
     sheet = sheet_builder(sheetfile).with_rows(['lane heading 1'], ['card 1']).build()
     
     blueprint_filename = sheet.basepath + '.svg'
+    print('sheet basepath')
+    print(sheet.basepath)
     create_blueprint(sheet.filename, blueprint_filename)
 
     blueprint = parse_blueprint(blueprint_filename)
