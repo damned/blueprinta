@@ -15,8 +15,12 @@ class Svg:
         self._dom = dom
 
     @property
+    def _top_nodes(self):
+        return self._dom.getElementsByTagName('svg')[0].childNodes
+
+    @property
     def groups(self):
-        return self._dom.getElementsByTagName('g')
+        return [child for child in self._top_nodes if child.tagName == 'g']
 
 
 class Blueprint:
@@ -28,6 +32,7 @@ class Blueprint:
         cards = []
         for lane in self._lanes:
             cards += lane.cards
+        
         return cards
 
     @property
@@ -39,15 +44,21 @@ class Blueprint:
         return [Lane(group) for group in self._svg.groups]
     
 
+def text_node_text(node):
+    return node.childNodes[0].nodeValue
+
+def text_content(svg_element):
+    return text_node_text(svg_element.getElementsByTagName('text')[0])
+
 class Lane:
     def __init__(self, group):
         self._group = group
 
     @property
     def name(self):
-        return 'lane heading 1'
+        return text_content(self._group)
 
     @property
     def cards(self):
-        return ['card 1' for rect in self._group.getElementsByTagName('rect')]
+        return [text_content(card_group) for card_group in self._group.getElementsByTagName('g')]
 

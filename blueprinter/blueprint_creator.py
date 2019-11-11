@@ -6,7 +6,7 @@ class BlueprintCreator:
 
     def create_blueprint(self, sheet_filename, blueprint_filename):
         blueprint = self.blueprint_class(blueprint_filename)
-        lane = blueprint.add_lane('lane')
-        lane.add_card('card')
+        lane = blueprint.add_lane('lane heading 1')
+        lane.add_card('card 1')
 
         blueprint.save()
