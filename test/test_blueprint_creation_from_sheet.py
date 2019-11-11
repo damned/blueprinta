@@ -8,7 +8,7 @@ from .blueprint_reader import parse_blueprint
 
 @pytest.fixture
 def sheetfile():
-    return f'build/tmp{int(datetime.datetime.now().timestamp())}.xslx'
+    return f'build/tmp{int(datetime.datetime.now().timestamp())}.xlsx'
 
 def setup():
     os.makedirs('build', exist_ok=True)
@@ -17,8 +17,6 @@ def test_creates_card_from_cell(sheetfile):
     sheet = sheet_builder(sheetfile).with_rows(['lane heading 1'], ['card 1']).build()
     
     blueprint_filename = sheet.basepath + '.svg'
-    print('sheet basepath')
-    print(sheet.basepath)
     create_blueprint(sheet.filename, blueprint_filename)
 
     blueprint = parse_blueprint(blueprint_filename)
@@ -32,6 +30,7 @@ def sheet_builder(sheetfile):
 
 
 def create_blueprint(sheet_filename, blueprint_filename):
+    print(blueprint_filename)
     BlueprintCreator().create_blueprint(sheet_filename, blueprint_filename)
 
     
