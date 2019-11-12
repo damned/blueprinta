@@ -14,6 +14,9 @@ class Sheet:
             return str(note.content)
         return None
 
+    def cell_colour(self, col, row):
+        return self._sheet.cell(row=row+1, column=col+1).fill.bgColor.rgb
+
     @property
     def columns(self):
         cols = []
@@ -48,3 +51,7 @@ class Cell:
     @property
     def content(self):
         return self._cell.value
+
+    @property
+    def colour(self):
+        return self._cell.fill.bgColor.rgb[2:8]
