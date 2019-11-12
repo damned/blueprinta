@@ -3,7 +3,7 @@ import svgwrite
 class Blueprint:
     def __init__(self, filename):
         width = 1600
-        height = 800
+        height = 900
         self._svg = svgwrite.Drawing(filename, profile='tiny', size=(width, height))
         self._svg.add(self._svg.rect((0, 0), (width, height), fill='white'))
         self.gap = 20
@@ -12,6 +12,7 @@ class Blueprint:
         self.card_half_height = 40
         self.card_height = self.card_half_height * 2
         self.lane_count = 0
+        self.line_spacing = 14
 
     def add_lane(self, name):
         group = svgwrite.container.Group()
@@ -40,11 +41,18 @@ class Lane:
         self.count += 1
 
     def add_card(self, name):
+        config = self._config
         card_group = svgwrite.container.Group()
         self.count += 1
-        x = self.x + self.count * (self._config.gap + self._config.card_width)
+        x = self.x + self.count * (config.gap + config.card_width)
         y = self.y
-        card_group.add(self._svg.rect((x - self._config.card_half_width, y - self._config.card_half_height), (self._config.card_width, self._config.card_height), fill='lightblue'))
-        card_group.add(self._svg.text(name, insert=(x, y), fill='black', font_family='sans', text_anchor='middle'))
+        card_group.add(self._svg.rect((x - config.card_half_width, y - config.card_half_height), (config.card_width, config.card_height), fill='lightblue'))
+        main_text = name.split('\n')[0]
+        lines = main_text.split(' ')
+        line_offset = -config.line_spacing * (len(lines) - 1) / 2.0
+        for line in lines:
+            card_group.add(self._svg.text(line, insert=(x, y + line_offset), fill='black', font_family='sans', text_anchor='middle'))
+            line_offset += config.line_spacing
+
         self._group.add(card_group)
 

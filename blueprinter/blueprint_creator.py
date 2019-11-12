@@ -15,12 +15,14 @@ class BlueprintCreator:
         if sheet.cell_note(0, 0) == 'skip':
             heading_row = 1
         for column in sheet.columns:
-            lane = blueprint.add_lane(column.cell(heading_row).content)
-            for row in range(heading_row + 1, column.row_count):
-                content = column.cell(row).content
-                if content:
-                    lane.add_card(column.cell(row).content)
-                else:
-                    lane.add_gap()
+            heading = column.cell(heading_row).content
+            if heading:
+                lane = blueprint.add_lane(heading)
+                for row in range(heading_row + 1, column.row_count):
+                    content = column.cell(row).content
+                    if content and content != '"':
+                        lane.add_card(column.cell(row).content)
+                    else:
+                        lane.add_gap()
 
         blueprint.save()
