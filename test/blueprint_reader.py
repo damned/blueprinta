@@ -62,15 +62,23 @@ class Blueprint:
 def text_node_text(node):
     return node.childNodes[0].nodeValue
 
-def text_node_position(node):
-    return (int(node.getAttribute('x')), int(node.getAttribute('y')))
+def shape_position(node):
+    return (int(float(node.getAttribute('x'))), int(float(node.getAttribute('y'))))
+
+def shape_dimensions(node):
+    return (int(float(node.getAttribute('width'))), int(float(node.getAttribute('height'))))
 
 def text_content(svg_element):
-    return text_node_text(svg_element.getElementsByTagName('text')[0])
+    return ' '.join([text_node_text(child) for child in svg_element.childNodes if child.tagName == 'text'])
 
 def text_position(svg_element):
-    return text_node_position(svg_element.getElementsByTagName('text')[0])
+    return shape_position(svg_element.getElementsByTagName('text')[0])
 
+def rect_position(svg_element):
+    rect = svg_element.getElementsByTagName('rect')[0]
+    left, top = shape_position(rect)
+    width, height = shape_dimensions(rect)
+    return (left + width / 2, top + height / 2)
 
 class Lane:
     def __init__(self, group):
@@ -99,6 +107,6 @@ class Card:
 
     @property
     def position(self):
-        return text_position(self._group)
+        return rect_position(self._group)
 
 
