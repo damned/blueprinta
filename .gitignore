@@ -5,9 +5,13 @@ venv/
 __pycache__
 *.pyc
 
-*.xlsx
+.~lock*
+
+# inputs
+*.xslx
 
 # output
 blueprint.svg
+blueprint.pdf
 scratch.xml
 
