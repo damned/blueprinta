@@ -8,6 +8,12 @@ class Sheet:
     def _sheet(self):
         return self._workbook.active
 
+    def cell_note(self, col, row):
+        note = self._sheet.cell(row=row+1, column=col+1).comment
+        if note:
+            return str(note.content)
+        return None
+
     @property
     def columns(self):
         cols = []
