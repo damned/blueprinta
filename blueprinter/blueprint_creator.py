@@ -12,6 +12,7 @@ class BlueprintCreator:
 
         for column in sheet.columns:
             lane = blueprint.add_lane(column.cell(0).content)
-            lane.add_card(column.cell(1).content)
+            for row in range(1, column.row_count):
+                lane.add_card(column.cell(row).content)
 
         blueprint.save()

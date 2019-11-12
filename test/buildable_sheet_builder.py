@@ -1,8 +1,8 @@
-from .sheet import Sheet
+from .buildable_sheet import BuildableSheet
 
-class SheetBuilder:
+class BuildableSheetBuilder:
     def __init__(self, filename):
-        self.sheet = Sheet(filename)
+        self.sheet = BuildableSheet(filename)
 
     def with_rows(self, *rows):
         for row in rows:

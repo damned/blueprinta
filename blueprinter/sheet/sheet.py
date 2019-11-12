@@ -28,9 +28,11 @@ class Column:
         self._cells.append(Cell(excel_cell))
 
     def cell(self, index):
-        print(self._cells)
-        print(len(self._cells))
         return self._cells[index]
+
+    @property
+    def row_count(self):
+        return len(self._cells)
 
 
 class Cell:

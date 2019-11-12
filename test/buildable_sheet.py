@@ -4,7 +4,7 @@ import openpyxl
 
 from openpyxl import Workbook
 
-class Sheet:
+class BuildableSheet:
     def __init__(self, filename):
         self.filename = filename
         self._wb = Workbook()
