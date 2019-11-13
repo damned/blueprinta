@@ -47,10 +47,10 @@ class Blueprint:
     def add_lane(self, name, colour=None):
         group = svgwrite.container.Group()
         self._svg.add(group)
-        self.lane_count += 1
-        x = self.gap + self.card_half_width
-        y = self.lane_count * (self.gap + self.card_height)
         half_height = (self.gap + self.card_height) / 2
+        x = self.gap + self.card_half_width
+        y = self.gap + half_height + self.lane_count * (self.gap + self.card_height)
+        self.lane_count += 1
         self.max_y = max(self.max_y, y + half_height)
         lane_background = self._svg.rect((0, y - half_height), (self.width, self.card_height + self.gap), fill=hex_to_svg_rgb_string(colour))
         group.add(lane_background)
