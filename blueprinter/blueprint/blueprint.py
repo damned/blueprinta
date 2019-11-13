@@ -1,5 +1,7 @@
 import svgwrite
 
+from blueprinter.blueprint.text_splitter import TextSplitter
+
 def hex_to_svg_rgb_string(hex, default='white'):
     if not hex:
         return default
@@ -72,7 +74,7 @@ class Blueprint:
 
 
 class Lane:
-    def __init__(self, svg, group, config, x, y):
+    def __init__(self, svg, group, config, x, y, splitter=TextSplitter()):
         self._group = group
         self._svg = svg
         self._config = config
@@ -80,6 +82,7 @@ class Lane:
         self.y = y
         self.count = 0
         self.max_x = 0
+        self.splitter = splitter
 
     def add_gap(self):
         self.count += 1
@@ -92,8 +95,7 @@ class Lane:
         y = self.y
         self.max_x =max(self.max_x, x + config.card_half_width)
         card_group.add(self._svg.rect((x - config.card_half_width, y - config.card_half_height), (config.card_width, config.card_height), fill=hex_to_svg_rgb_string(colour, 'white')))
-        main_text = name.split('\n')[0]
-        lines = main_text.split(' ')
+        lines = self.splitter.split(name)
         line_offset = -config.line_spacing * (len(lines) - 1) / 2.0
         for line in lines:
             card_group.add(self._svg.text(line, insert=(x, y + line_offset), fill='black', font_family='sans', text_anchor='middle'))
