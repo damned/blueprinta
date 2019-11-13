@@ -44,13 +44,13 @@ class Lane:
     def add_gap(self):
         self.count += 1
 
-    def add_card(self, name):
+    def add_card(self, name, colour='lightblue'):
         config = self._config
         card_group = svgwrite.container.Group()
         self.count += 1
         x = self.x + self.count * (config.gap + config.card_width)
         y = self.y
-        card_group.add(self._svg.rect((x - config.card_half_width, y - config.card_half_height), (config.card_width, config.card_height), fill='lightblue'))
+        card_group.add(self._svg.rect((x - config.card_half_width, y - config.card_half_height), (config.card_width, config.card_height), fill=hex_to_svg_rgb_string(colour)))
         main_text = name.split('\n')[0]
         lines = main_text.split(' ')
         line_offset = -config.line_spacing * (len(lines) - 1) / 2.0

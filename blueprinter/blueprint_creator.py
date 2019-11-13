@@ -24,9 +24,10 @@ class BlueprintCreator:
             print(heading.content)
             lane = blueprint.add_lane(heading.content, colour=heading.colour)
             for row in range(heading_row + 1, column.row_count):
-                content = column.cell(row).content
+                cell = column.cell(row)
+                content = cell.content
                 if content and content != '"':
-                    lane.add_card(column.cell(row).content)
+                    lane.add_card(column.cell(row).content, colour=cell.colour)
                 else:
                     lane.add_gap()
 
