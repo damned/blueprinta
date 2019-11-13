@@ -8,12 +8,14 @@ def hex_to_svg_rgb_string(hex, default='white'):
 class Blueprint:
     def __init__(self, filename):
         self.width = 1600
-        height = 900
+        height = 600
         self.full_width_elements = []
+        self.full_height_elements = []
         self._svg = svgwrite.Drawing(filename, profile='tiny', size=(self.width, height))
         background = self._svg.rect((0, 0), (self.width, height), fill='white')
         self._svg.add(background)
         self.full_width(self._svg, background)
+        self.full_height(self._svg, background)
         self.gap = 20
         self.card_half_width = 50
         self.card_width = self.card_half_width * 2
@@ -21,14 +23,24 @@ class Blueprint:
         self.card_height = self.card_half_height * 2
         self.lane_count = 0
         self.line_spacing = 14
+        self.max_y = 0
         self.lanes = []
 
     def full_width(self, *elements):
         self.full_width_elements += elements
 
+    def full_height(self, *elements):
+        self.full_height_elements += elements
+
     def update_full_width(self, width):
-        for e in self.full_width_elements:
-            e['width'] = width
+        self.update_all_attributes(self.full_width_elements, 'width', width)
+
+    def update_full_height(self, height):
+        self.update_all_attributes(self.full_height_elements, 'height', height)
+
+    def update_all_attributes(self, elements, name, value):
+        for e in elements:
+            e[name] = value
 
     def add_lane(self, name, colour=None):
         group = svgwrite.container.Group()
@@ -36,7 +48,9 @@ class Blueprint:
         self.lane_count += 1
         x = self.gap + self.card_half_width
         y = self.lane_count * (self.gap + self.card_height)
-        lane_background = self._svg.rect((0, y - (self.gap + self.card_height) / 2), (self.width, self.card_height + self.gap), fill=hex_to_svg_rgb_string(colour))
+        half_height = (self.gap + self.card_height) / 2
+        self.max_y = max(self.max_y, y + half_height)
+        lane_background = self._svg.rect((0, y - half_height), (self.width, self.card_height + self.gap), fill=hex_to_svg_rgb_string(colour))
         group.add(lane_background)
         text = self._svg.text(name, insert=(x, y), fill='black', font_family='sans', text_anchor='middle')
         group.add(text)
@@ -53,6 +67,7 @@ class Blueprint:
 
     def save(self):
         self.update_full_width(self.max_card_extent_in_x() + self.gap)
+        self.update_full_height(self.max_y + self.gap)
         self._svg.save()
 
 
