@@ -62,4 +62,4 @@ class Cell:
 
     @property
     def colour(self):
-        cell = self._cell
+        return colour_of_cell(self._cell)
