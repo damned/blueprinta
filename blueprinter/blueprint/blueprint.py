@@ -1,6 +1,6 @@
 import svgwrite
 
-from blueprinter.blueprint.text_splitter import TextSplitter
+from .text_splitter import TextSplitter
 
 def hex_to_svg_rgb_string(hex, default='white'):
     if not hex:
