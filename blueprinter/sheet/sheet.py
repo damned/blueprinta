@@ -54,4 +54,7 @@ class Cell:
 
     @property
     def colour(self):
-        return self._cell.fill.bgColor.rgb[2:8]
+        argb = self._cell.fill.bgColor.rgb
+        if argb[0:2] == '00':
+            return None
+        return argb[2:8]

@@ -1,6 +1,8 @@
 import svgwrite
 
-def hex_to_svg_rgb_string(hex):
+def hex_to_svg_rgb_string(hex, default='white'):
+    if not hex:
+        return default
     return 'rgb' + str(tuple(int(hex[i:i+2], 16) for i in (0, 2, 4)))
 
 class Blueprint:
@@ -44,13 +46,13 @@ class Lane:
     def add_gap(self):
         self.count += 1
 
-    def add_card(self, name, colour='lightblue'):
+    def add_card(self, name, colour):
         config = self._config
         card_group = svgwrite.container.Group()
         self.count += 1
         x = self.x + self.count * (config.gap + config.card_width)
         y = self.y
-        card_group.add(self._svg.rect((x - config.card_half_width, y - config.card_half_height), (config.card_width, config.card_height), fill=hex_to_svg_rgb_string(colour)))
+        card_group.add(self._svg.rect((x - config.card_half_width, y - config.card_half_height), (config.card_width, config.card_height), fill=hex_to_svg_rgb_string(colour, 'white')))
         main_text = name.split('\n')[0]
         lines = main_text.split(' ')
         line_offset = -config.line_spacing * (len(lines) - 1) / 2.0
