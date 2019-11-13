@@ -1,5 +1,13 @@
 from openpyxl import load_workbook
 
+def colour_of_cell(cell):
+    argb = cell.fill.bgColor.rgb
+    print('colour: ' + argb)
+    if argb[0:2] == '00':
+        return None
+    return argb[2:8]
+
+
 class Sheet:
     def __init__(self, filename):
         self._workbook = load_workbook(filename)
@@ -15,7 +23,7 @@ class Sheet:
         return None
 
     def cell_colour(self, col, row):
-        return self._sheet.cell(row=row+1, column=col+1).fill.bgColor.rgb
+        return colour_of_cell(self._sheet.cell(row=row+1, column=col+1))
 
     @property
     def columns(self):
@@ -54,7 +62,4 @@ class Cell:
 
     @property
     def colour(self):
-        argb = self._cell.fill.bgColor.rgb
-        if argb[0:2] == '00':
-            return None
-        return argb[2:8]
+        cell = self._cell

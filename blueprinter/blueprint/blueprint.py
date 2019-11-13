@@ -19,7 +19,7 @@ class Blueprint:
         self.lane_count = 0
         self.line_spacing = 14
 
-    def add_lane(self, name, colour='white'):
+    def add_lane(self, name, colour=None):
         group = svgwrite.container.Group()
         self._svg.add(group)
         self.lane_count += 1
@@ -46,7 +46,7 @@ class Lane:
     def add_gap(self):
         self.count += 1
 
-    def add_card(self, name, colour):
+    def add_card(self, name, colour=None):
         config = self._config
         card_group = svgwrite.container.Group()
         self.count += 1
