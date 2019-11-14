@@ -11,7 +11,8 @@ __pycache__
 *.xlsx
 
 # output
-blueprint.svg
-blueprint.pdf
+*.svg
+*.pdf
+*.png
 scratch.xml
 
