@@ -8,9 +8,6 @@ service blueprint creator
 `blueprinta` is a command line tool for generating [service blueprint](https://en.wikipedia.org/wiki/Service_blueprint) diagrams
 from easily editable definitions.
 
-
-## history
-
 it was directly inspired by https://medium.com/capitalonedesign/easier-better-faster-stronger-9f36739cfd0c.
 
 
