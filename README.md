@@ -22,13 +22,6 @@ represented as cells in columns, stored in excel format.
 the excel files used as sources have so far only been tested as downloads from Google Sheets in excel format.
 
 
-## an example
-
-generated from example source sheet [blueprinta.xlsx](examples/blueprinta.xlsx):
-
-![Blueprinta dogfood Service Blueprint](examples/blueprinta.png)
-
-
 ## pre-requisites
 
 a working python 3 environment or docker.
@@ -42,14 +35,20 @@ on docker:
 
 `./blueprinta whatever.xlsx whatever.svg`
 
-to run included example on docker:
-
-`./create-example.sh`
-
 on python 3 (e.g. in venv)
 
 `python create-blueprint.py whatever.xlsx whatever.svg`
 
+
+## an example
+
+generated from example source sheet [blueprinta.xlsx](examples/blueprinta.xlsx):
+
+![Blueprinta dogfood Service Blueprint](examples/blueprinta.png)
+
+to re-generate included example on docker:
+
+`./create-example.sh`
 
 ## different image formats
 
