@@ -24,7 +24,7 @@ the excel files used as sources have so far only been tested as downloads from G
 
 ## an example
 
-generated from example source sheet `examples/blueprinta.xlsx`:
+generated from example source sheet [blueprinta.xlsx](examples/blueprinta.xlsx):
 
 ![Blueprinta dogfood Service Blueprint](examples/blueprinta.png)
 
