@@ -21,11 +21,13 @@ represented as cells in columns, stored in excel format.
 
 the excel files used as sources have so far only been tested as downloads from Google Sheets in excel format.
 
+
 ## an example
 
 generated from example source sheet `examples/blueprinta.xlsx`:
 
 ![Blueprinta dogfood Service Blueprint](examples/blueprinta.png)
+
 
 ## pre-requisites
 
@@ -47,6 +49,17 @@ to run included example on docker:
 on python 3 (e.g. in venv)
 
 `python create-blueprint.py whatever.xlsx whatever.svg`
+
+
+## different image formats
+
+the current image output is always SVG format.  this isn't always usable or consistent in its rendering in final media.  we've been converting into different formats using [ImageMagick](https://imagemagick.org).
+
+with ImageMagick installed you can run e.g.:
+```
+convert blueprint.svg blueprint.pdf
+convert blueprint.svg blueprint.png
+```
 
 
 ## features
