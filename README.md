@@ -25,7 +25,7 @@ the excel files used as sources have so far only been tested as downloads from G
 
 generated from example source sheet `examples/blueprinta.xlsx`:
 
-![Blueprinta dogfood Service Blueprint](examples/blueprinta.svg)
+![Blueprinta dogfood Service Blueprint](examples/blueprinta.png)
 
 ## pre-requisites
 
