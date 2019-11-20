@@ -15,4 +15,5 @@ __pycache__
 *.pdf
 *.png
 scratch.xml
+*.log
 

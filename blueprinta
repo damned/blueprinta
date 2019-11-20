@@ -1,0 +1,2 @@
+#!/bin/bash
+docker build --quiet --tag blueprinta . > blueprinta-docker-build.log && docker run blueprinta $@
