@@ -73,6 +73,11 @@ envisaged:
  - spike links and arrows
 
 
+## known issues
+
+- doesn't work correctly currently with colours saved from LibreOffice (works downloading Google Sheet as xslx)
+
+
 ## development
 
 TDD'ed the first basics, then rushed out needed features for immediate need.
