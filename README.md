@@ -71,7 +71,7 @@ envisaged:
 
 ## known issues
 
-- doesn't work correctly currently with colours saved from LibreOffice (works downloading Google Sheet as xslx)
+- see [issues on github](https://github.com/damned/blueprinta/issues)
 
 
 ## development
