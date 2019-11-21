@@ -1,6 +1,6 @@
 import pytest
 
-from ..blueprinter.blueprint.text_splitter import TextSplitter
+from blueprinter.blueprint.text_splitter import TextSplitter
 
 splitter = TextSplitter()
 

@@ -2,9 +2,9 @@ import pytest
 import datetime
 import os.path
 
-from .buildable_sheet_builder import BuildableSheetBuilder
-from ..blueprinter.blueprint_creator import BlueprintCreator
-from .blueprint_reader import parse_blueprint
+from test.support.buildable_sheet_builder import BuildableSheetBuilder
+from blueprinter.blueprint_creator import BlueprintCreator
+from test.support.blueprint_reader import parse_blueprint
 
 @pytest.fixture
 def sheetfile():

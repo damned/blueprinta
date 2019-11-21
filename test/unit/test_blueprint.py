@@ -2,8 +2,8 @@ import pytest
 import datetime
 import os.path
 
-from ..blueprinter.blueprint.blueprint import Blueprint
-from .blueprint_reader import parse_blueprint
+from blueprinter.blueprint.blueprint import Blueprint
+from test.support.blueprint_reader import parse_blueprint
 
 @pytest.fixture
 def blueprint_filename():
