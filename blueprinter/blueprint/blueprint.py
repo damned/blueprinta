@@ -14,6 +14,7 @@ class Blueprint:
         self.full_width_elements = []
         self.full_height_elements = []
         self._svg = svgwrite.Drawing(filename, profile='tiny', size=(self.width, height))
+        print(filename)
         background = self._svg.rect((0, 0), (self.width, height), fill='white')
         self._svg.add(background)
         self.full_width(self._svg, background)
@@ -70,7 +71,9 @@ class Blueprint:
     def save(self):
         self.update_full_width(self.max_card_extent_in_x() + self.gap)
         self.update_full_height(self.max_y + self.gap)
+        print(f'saving {self._svg}...')
         self._svg.save()
+        print('saved')
 
 
 class Lane:

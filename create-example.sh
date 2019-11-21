@@ -1,1 +1,1 @@
-./blueprinta examples/blueprinta.xlsx examples/blueprinta.svg
+./blueprinta examples/blueprinta.xlsx blueprinta.svg

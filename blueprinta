@@ -1,2 +1,12 @@
 #!/bin/bash
-docker build --tag blueprinta . > docker-blueprinta-build.log && docker run blueprinta $@
+INPUT_FILE=$1
+OUTPUT_FILE=$2
+echo 'input file:' $INPUT_FILE
+echo 'output file:' $OUTPUT_FILE
+docker build --tag blueprinta . > docker-blueprinta-build.log \
+    && docker run -v $PWD/$INPUT_FILE:/working/$INPUT_FILE --label blueprinta -t blueprinta $INPUT_FILE $OUTPUT_FILE
+
+CONTAINER_ID=$(docker ps -alqf "label=blueprinta")
+
+docker cp $CONTAINER_ID:/working/$OUTPUT_FILE $OUTPUT_FILE
+docker rm $CONTAINER_ID

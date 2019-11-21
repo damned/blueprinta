@@ -10,4 +10,7 @@ RUN pip install -r requirements.txt
 
 ADD . ./
 
-ENTRYPOINT ["python", "create-blueprint.py"]
+RUN mkdir /working
+WORKDIR /working
+
+ENTRYPOINT ["python", "/code/create-blueprint.py"]
