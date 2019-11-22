@@ -1,7 +1,7 @@
 import sys
-from blueprinter.blueprint_creator import BlueprintCreator
+from blueprinter.file_based_blueprint_creator import FileBasedBlueprintCreator
 
 print(sys.argv)
 xls_input_filename = sys.argv[1]
 svg_output_filename = sys.argv[2]
-BlueprintCreator().create_blueprint(xls_input_filename, svg_output_filename)
+FileBasedBlueprintCreator().create_blueprint(xls_input_filename, svg_output_filename)
