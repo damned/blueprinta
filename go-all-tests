@@ -1,0 +1,3 @@
+#!/bin/bash
+pytest --ignore=test/functional
+pytest test/functional
